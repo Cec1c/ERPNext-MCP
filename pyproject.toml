@@ -1,0 +1,37 @@
+[project]
+name = "erpnext-mcp"
+version = "0.2.0"
+description = "ERPNext/Frappe API bridge with Safe Mode, immutable plans and complete result artifacts."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastmcp>=3.4.2,<4",
+    "httpx>=0.28.0",
+    "python-dotenv>=1.0.1",
+    "pydantic>=2.11,<3",
+]
+
+[project.scripts]
+erpnext-mcp = "erpnext_mcp.server:main"
+erpnext-mcp-smoke = "erpnext_mcp.smoke:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.format]
+line-ending = "lf"
+
+[dependency-groups]
+dev = ["pytest>=8,<9", "ruff==0.12.10"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/erpnext_mcp"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src/erpnext_mcp", "tests", "docs", "scripts/check_release.py", "README.md", "README.zh-CN.md", "pyproject.toml", "uv.lock", ".env.example", ".dockerignore", "Dockerfile", "mcp.json"]
+exclude = ["**/__pycache__", "**/*.pyc", ".repo", ".mcp-state", ".inputdata", "erpnext-dev"]

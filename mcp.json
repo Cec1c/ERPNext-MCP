@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "erpnext": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/absolute/path/to/erpnext-mcp",
+        "run",
+        "--no-sync",
+        "python",
+        "-u",
+        "-m",
+        "erpnext_mcp"
+      ],
+      "env": {
+        "ERPNEXT_ENV_FILE": "/absolute/path/to/erpnext-mcp/.env",
+        "UV_LINK_MODE": "copy"
+      }
+    }
+  }
+}
